@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Bulbasaur
-  unitLevel: 5
-  damage: 5
-  maxHP: 30
-  curHP: 30
+  unitLevel: 3
+  damage: 15
+  maxHP: 50
+  curHP: 50
 --- !u!1 &1765790719945523769
 GameObject:
   m_ObjectHideFlags: 0

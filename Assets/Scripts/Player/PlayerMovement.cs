@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+public enum PlayerState { ROAMING, BATTLE }
+
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 3f;
@@ -14,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
     public float encounterChance = 0.5f;
 
     private float encounterTimer = 0f;
+
+    public GameObject battleSystem;
+    public bool isInBattle = false;
 
     void Start()
     {
@@ -50,13 +55,15 @@ public class PlayerMovement : MonoBehaviour
 
     void InitiateRandomBattle()
     {
-        Debug.Log("Pokemon encountered!");
+        if (isInBattle == false)
+        {
+            Debug.Log("Pokemon encountered!");
+            battleSystem.SetActive(true);
+        }
     }
 
     void EncounterChecker()
     {
-        
-
         Vector3Int playerTilePosition = encounterTileMap.WorldToCell(transform.position);
 
         if (encounterTileMap.GetTile(playerTilePosition) != null)

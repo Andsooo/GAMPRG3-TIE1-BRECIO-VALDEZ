@@ -23,6 +23,10 @@ public class BattleSystem : MonoBehaviour
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD;
 
+    public GameObject battleSystem;
+
+    public PlayerMovement playerMovement;
+
     void Start()
     {
         state = BattleState.START;
@@ -50,6 +54,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerAttack()
     {
+
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
 
         enemyHUD.SetHealth(enemyUnit.curHP);
@@ -57,10 +62,14 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        if(isDead)
+        if (isDead)
         {
             state = BattleState.WON;
             BattleEnd();
+
+            yield return new WaitForSeconds(2f);
+
+            battleSystem.SetActive(false);
         }
         else
         {
@@ -76,7 +85,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnAttackButton()
     {
-        if (state != BattleState.PLAYERTURN) 
+        if (state != BattleState.PLAYERTURN)
         {
             return;
         }
@@ -98,10 +107,14 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        if(isDead)
+        if (isDead)
         {
             state = BattleState.LOST;
             BattleEnd();
+
+            yield return new WaitForSeconds(2f);
+
+            battleSystem.SetActive(false);
         }
         else
         {
@@ -120,5 +133,7 @@ public class BattleSystem : MonoBehaviour
         {
             dialogueText.text = "You lose!";
         }
+
+        playerMovement.isInBattle = false;
     }
 }

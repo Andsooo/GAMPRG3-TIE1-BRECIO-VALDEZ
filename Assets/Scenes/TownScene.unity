@@ -830,7 +830,7 @@ RectTransform:
   m_Father: {fileID: 1412221279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 15.775024, y: 0}
   m_SizeDelta: {x: -18.75, y: -5.8599997}
   m_Pivot: {x: 0, y: 0.5}
@@ -17942,7 +17942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1271619982
 Transform:
   m_ObjectHideFlags: 0
@@ -17982,6 +17982,8 @@ MonoBehaviour:
   dialogueText: {fileID: 1428443149}
   playerHUD: {fileID: 975196445}
   enemyHUD: {fileID: 708281339}
+  battleSystem: {fileID: 1271619981}
+  playerMovement: {fileID: 1358690408}
 --- !u!1 &1282915010
 GameObject:
   m_ObjectHideFlags: 0
@@ -18490,6 +18492,8 @@ MonoBehaviour:
   encounterTileMap: {fileID: 1349185683}
   baseEncounterInterval: 5
   encounterChance: 0.5
+  battleSystem: {fileID: 1271619981}
+  isInBattle: 0
 --- !u!50 &1358690409
 Rigidbody2D:
   serializedVersion: 4
@@ -18736,7 +18740,7 @@ RectTransform:
   m_Father: {fileID: 1681083145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 15.775024, y: 0}
   m_SizeDelta: {x: -18.75, y: -5.8599997}
   m_Pivot: {x: 0, y: 0.5}
