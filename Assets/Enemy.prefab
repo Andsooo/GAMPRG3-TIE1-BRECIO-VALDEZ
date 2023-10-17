@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d8d2804dfb7d64fb9ade278793d9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Charizard
+  unitName: Dragath
   unitLevel: 1
   damage: 5
   maxHP: 30
@@ -123,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: 70613901
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cd259d9d4f8ba2749a16d1cc64d46bec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 182608ecc6903d146a655b89d7cf5656, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
