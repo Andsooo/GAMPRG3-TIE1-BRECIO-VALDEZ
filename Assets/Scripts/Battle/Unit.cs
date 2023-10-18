@@ -23,4 +23,9 @@ public class Unit : MonoBehaviour
             return false;
         }
     }
+
+    public void ResetStats()
+    {
+        curHP = maxHP;
+    }
 }

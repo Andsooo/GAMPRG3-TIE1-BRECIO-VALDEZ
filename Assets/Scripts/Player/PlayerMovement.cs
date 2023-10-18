@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float encounterTimer = 0f;
 
-    public GameObject battleSystem;
+    public BattleSystem battleSystem;
     public bool isInBattle = false;
 
     void Start()
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         if (isInBattle == false)
         {
             Debug.Log("Pokemon encountered!");
-            battleSystem.SetActive(true);
+            battleSystem.BattleStart();
         }
     }
 

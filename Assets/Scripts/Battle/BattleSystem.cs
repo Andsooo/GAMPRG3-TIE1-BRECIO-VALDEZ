@@ -10,7 +10,7 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
 
     public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs;
 
     public Transform playerBattleArea;
     public Transform enemyBattleArea;
@@ -27,29 +27,51 @@ public class BattleSystem : MonoBehaviour
 
     public PlayerMovement playerMovement;
 
+    private bool isBattling = false;
+
     void Start()
     {
-        state = BattleState.START;
-        StartCoroutine(SetupBattle());
+
+    }
+
+    public void BattleStart()
+    {
+        if (!isBattling)
+        {
+            battleSystem.SetActive(true);
+
+            state = BattleState.START;
+            StartCoroutine(SetupBattle());
+
+            isBattling = true;
+        }
     }
 
     IEnumerator SetupBattle()
     {
-        GameObject playerGameObject = Instantiate(playerPrefab, playerBattleArea);
-        playerUnit = playerGameObject.GetComponent<Unit>();
+        if (state == BattleState.START)
+        {
+            Debug.Log("SetupBattle");
 
-        GameObject enemyGameObject = Instantiate(enemyPrefab, enemyBattleArea);
-        enemyUnit = enemyGameObject.GetComponent<Unit>();
+            ResetBattle();
 
-        dialogueText.text = "A wild " + enemyUnit.unitName + " appeared!";
+            GameObject playerGameObject = Instantiate(playerPrefab, playerBattleArea);
+            playerUnit = playerGameObject.GetComponent<Unit>();
 
-        playerHUD.SetHUD(playerUnit);
-        enemyHUD.SetHUD(enemyUnit);
+            GameObject currentEnemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+            GameObject enemyGameObject = Instantiate(currentEnemy, enemyBattleArea);
+            enemyUnit = enemyGameObject.GetComponent<Unit>();
 
-        yield return new WaitForSeconds(2f);
+            dialogueText.text = "A wild " + enemyUnit.unitName + " appeared!";
 
-        state = BattleState.PLAYERTURN;
-        PlayerTurn();
+            playerHUD.SetHUD(playerUnit);
+            enemyHUD.SetHUD(enemyUnit);
+
+            yield return new WaitForSeconds(2f);
+
+            state = BattleState.PLAYERTURN;
+            PlayerTurn();
+        }
     }
 
     IEnumerator PlayerAttack()
@@ -113,8 +135,6 @@ public class BattleSystem : MonoBehaviour
             BattleEnd();
 
             yield return new WaitForSeconds(2f);
-
-            battleSystem.SetActive(false);
         }
         else
         {
@@ -134,6 +154,36 @@ public class BattleSystem : MonoBehaviour
             dialogueText.text = "You lose!";
         }
 
+        StartCoroutine(BattleEndScreen(2f));
+
         playerMovement.isInBattle = false;
+        state = BattleState.START;
+
+        isBattling = false;
+    }
+
+    private IEnumerator BattleEndScreen(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        enemyUnit.ResetStats();
+
+        yield return new WaitForSeconds(1f);
+
+        if (!isBattling)
+        {
+            battleSystem.SetActive(false);
+        }
+
+        StartCoroutine(SetupBattle());
+    }
+
+    void ResetBattle()
+    {
+        if (enemyUnit != null)
+        {
+            Destroy(enemyUnit.gameObject);
+            enemyUnit = null;
+        }
     }
 }

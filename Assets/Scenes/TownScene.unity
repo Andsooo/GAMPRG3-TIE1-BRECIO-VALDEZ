@@ -18121,7 +18121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playerPrefab: {fileID: 870869970705922661, guid: 662d6b857a61e2d489db53839c33f03f, type: 3}
-  enemyPrefab: {fileID: 7008480099163258671, guid: c5342fde5b8062f47bf996b1eb1a826b, type: 3}
+  enemyPrefabs:
+  - {fileID: 7008480099163258671, guid: c5342fde5b8062f47bf996b1eb1a826b, type: 3}
+  - {fileID: 665371042100510755, guid: a4e35ce2006142e47b6c255273899b12, type: 3}
   playerBattleArea: {fileID: 486107187}
   enemyBattleArea: {fileID: 1217516647}
   dialogueText: {fileID: 1428443149}
@@ -18636,8 +18638,8 @@ MonoBehaviour:
   moveSpeed: 3
   encounterTileMap: {fileID: 1349185683}
   baseEncounterInterval: 5
-  encounterChance: 0.5
-  battleSystem: {fileID: 1271619981}
+  encounterChance: 1
+  battleSystem: {fileID: 1271619983}
   isInBattle: 0
 --- !u!50 &1358690409
 Rigidbody2D:
