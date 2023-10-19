@@ -18534,7 +18534,7 @@ MonoBehaviour:
   moveSpeed: 3
   encounterTileMap: {fileID: 1349185683}
   baseEncounterInterval: 5
-  encounterChance: 1
+  encounterChance: 0.7
   battleSystem: {fileID: 1271619983}
   isInBattle: 0
   animator: {fileID: 1358690413}

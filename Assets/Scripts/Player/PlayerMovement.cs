@@ -37,7 +37,10 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
-
+        if (isInBattle)
+        {
+            return;
+        }
 
         encounterTimer += Time.deltaTime;
 
@@ -45,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (IsInsideEncounterArea())
             {
-                Debug.Log("Inside the encounter area!");
+                //Debug.Log("Inside the encounter area!");
 
                 if (Random.Range(0f, 1f) <= encounterChance)
                 {
@@ -66,8 +69,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isInBattle == false)
         {
-            Debug.Log("Pokemon encountered!");
+            //Debug.Log("Pokemon encountered!");
             battleSystem.BattleStart();
+            isInBattle = true;
         }
     }
 
