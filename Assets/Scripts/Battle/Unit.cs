@@ -28,4 +28,13 @@ public class Unit : MonoBehaviour
     {
         curHP = maxHP;
     }
+
+    public void Heal(int amount)
+    {
+        curHP += amount;
+        if(curHP > maxHP)
+        {
+            curHP = maxHP;
+        }
+    }
 }

@@ -105,6 +105,20 @@ public class BattleSystem : MonoBehaviour
         dialogueText.text = "What's your move?";
     }
 
+    IEnumerator PlayerHeal()
+    {
+        playerUnit.Heal(5);
+
+        playerHUD.SetHealth(playerUnit.curHP);
+
+        dialogueText.text = "You are healed!";
+
+        yield return new WaitForSeconds(2f);
+
+        state = BattleState.ENEMYTURN;
+        StartCoroutine (EnemyTurn());
+    }
+
     public void OnAttackButton()
     {
         if (state != BattleState.PLAYERTURN)
@@ -115,6 +129,18 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.WAITING;
 
         StartCoroutine(PlayerAttack());
+    }
+
+    public void OnHealButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+        {
+            return;
+        }
+
+        state = BattleState.WAITING;
+
+        StartCoroutine(PlayerHeal());
     }
 
     IEnumerator EnemyTurn()
