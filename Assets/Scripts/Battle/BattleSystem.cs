@@ -29,9 +29,13 @@ public class BattleSystem : MonoBehaviour
 
     private bool isBattling = false;
 
+    private PlayerActions playerActions;
+    private EnemyActions enemyActions;
+
     void Start()
     {
-
+        playerActions = GetComponent<PlayerActions>();
+        enemyActions = GetComponent<EnemyActions>();
     }
 
     public void BattleStart()
@@ -51,8 +55,6 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.START)
         {
-            Debug.Log("SetupBattle");
-
             ResetBattle();
 
             GameObject playerGameObject = Instantiate(playerPrefab, playerBattleArea);
@@ -74,51 +76,6 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    IEnumerator PlayerAttack()
-    {
-
-        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
-
-        enemyHUD.SetHealth(enemyUnit.curHP);
-        dialogueText.text = "Enemy hit!";
-
-        yield return new WaitForSeconds(2f);
-
-        if (isDead)
-        {
-            state = BattleState.WON;
-            BattleEnd();
-
-            yield return new WaitForSeconds(2f);
-
-            battleSystem.SetActive(false);
-        }
-        else
-        {
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
-        }
-    }
-
-    void PlayerTurn()
-    {
-        dialogueText.text = "What's your move?";
-    }
-
-    IEnumerator PlayerHeal()
-    {
-        playerUnit.Heal(5);
-
-        playerHUD.SetHealth(playerUnit.curHP);
-
-        dialogueText.text = "You are healed!";
-
-        yield return new WaitForSeconds(2f);
-
-        state = BattleState.ENEMYTURN;
-        StartCoroutine (EnemyTurn());
-    }
-
     public void OnAttackButton()
     {
         if (state != BattleState.PLAYERTURN)
@@ -128,7 +85,7 @@ public class BattleSystem : MonoBehaviour
 
         state = BattleState.WAITING;
 
-        StartCoroutine(PlayerAttack());
+        StartCoroutine(playerActions.PlayerAttack(playerUnit, enemyUnit, state, enemyHUD, dialogueText));
     }
 
     public void OnHealButton()
@@ -140,36 +97,20 @@ public class BattleSystem : MonoBehaviour
 
         state = BattleState.WAITING;
 
-        StartCoroutine(PlayerHeal());
+        StartCoroutine(playerActions.PlayerHeal(playerUnit, state, playerHUD, dialogueText));
     }
 
-    IEnumerator EnemyTurn()
+    public IEnumerator EnemyTurn()
     {
-        dialogueText.text = enemyUnit.unitName + " attacks!";
-
-        yield return new WaitForSeconds(1f);
-
-        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
-
-        playerHUD.SetHealth(playerUnit.curHP);
-
-        yield return new WaitForSeconds(1f);
-
-        if (isDead)
-        {
-            state = BattleState.LOST;
-            BattleEnd();
-
-            yield return new WaitForSeconds(2f);
-        }
-        else
-        {
-            state = BattleState.PLAYERTURN;
-            PlayerTurn();
-        }
+        yield return StartCoroutine(enemyActions.EnemyTurn(playerUnit, enemyUnit, state, playerHUD, enemyHUD, dialogueText));
     }
 
-    void BattleEnd()
+    public void PlayerTurn()
+    {
+        dialogueText.text = "What's your move?";
+    }
+
+    public void BattleEnd()
     {
         if (state == BattleState.WON)
         {

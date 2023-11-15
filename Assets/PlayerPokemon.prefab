@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Bulbasaur
   unitLevel: 3
+  minDamage: 10
+  maxDamage: 25
   damage: 15
   maxHP: 50
   curHP: 50

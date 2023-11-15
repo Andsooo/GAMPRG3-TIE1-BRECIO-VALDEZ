@@ -6,12 +6,15 @@ public class Unit : MonoBehaviour
 {
     public string unitName;
     public int unitLevel;
+    public int minDamage;
+    public int maxDamage;
     public int damage;
     public int maxHP;
     public int curHP;
 
     public bool TakeDamage(int damage)
     {
+        damage = Random.Range(minDamage, maxDamage);
         curHP -= damage;
 
         if(curHP <= 0)
