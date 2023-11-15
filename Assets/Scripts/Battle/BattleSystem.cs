@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleState { START, PLAYERTURN, WAITING, ENEMYTURN, WON, LOST }
+public enum BattleState { START, PLAYERTURN, WAITING, ENEMYTURN, WON, LOST, ESCAPED }
 
 public class BattleSystem : MonoBehaviour
 {
@@ -76,7 +76,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void OnAttackButton()
+    public void OnTackleButton()
     {
         if (state != BattleState.PLAYERTURN)
         {
@@ -85,7 +85,31 @@ public class BattleSystem : MonoBehaviour
 
         state = BattleState.WAITING;
 
-        StartCoroutine(playerActions.PlayerAttack(playerUnit, enemyUnit, state, enemyHUD, dialogueText));
+        StartCoroutine(playerActions.PlayerTackle(playerUnit, enemyUnit, state, enemyHUD, dialogueText));
+    }
+
+    public void OnKickButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+        {
+            return;
+        }
+
+        state = BattleState.WAITING;
+
+        StartCoroutine(playerActions.PlayerKick(playerUnit, enemyUnit, state, enemyHUD, dialogueText));
+    }
+
+    public void OnRunButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+        {
+            return;
+        }
+
+        state = BattleState.WAITING;
+
+        StartCoroutine(playerActions.Run(state, dialogueText));
     }
 
     public void OnHealButton()
