@@ -22,12 +22,15 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator animator;
 
-    
+
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator= GetComponent<Animator>();
     }
+
 
     void Update()
     {
@@ -36,12 +39,22 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        //Sprite Last Movement
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+
+        if(movement.x != 0 || movement.y != 0)
+        {
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            animator.SetBool("IsWalking", true);
+        }else
+        {
+            animator.SetBool("IsWalking", false);
+
+        }
+
 
         encounterTimer += Time.deltaTime;
 
@@ -59,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+  
     void FixedUpdate()
     {
         if(!isInBattle)
