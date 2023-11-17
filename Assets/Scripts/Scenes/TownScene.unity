@@ -1995,18 +1995,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4b8b6386a3ed9534ba5ba611634ce86b, type: 3}
-    m_FontSize: 40
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Good day! How many potions do you need?
+  m_Text: Good day! You currently have 1 heal potion. How much more do you need?
 --- !u!222 &647420748
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20688,7 +20688,7 @@ Transform:
   m_GameObject: {fileID: 1358690407}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.18, y: -0.63, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22081,6 +22081,7 @@ MonoBehaviour:
   popupScreen: {fileID: 628564378}
   playerMovement: {fileID: 1358690408}
   playerInventory: {fileID: 0}
+  dialogueText: {fileID: 647420747}
 --- !u!4 &1871924842
 Transform:
   m_ObjectHideFlags: 0

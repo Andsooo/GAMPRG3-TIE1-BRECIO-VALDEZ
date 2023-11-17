@@ -13,6 +13,8 @@ public class PokeMart : MonoBehaviour
 
     public PlayerInventory playerInventory;
 
+    public Text dialogueText;
+
     void Start()
     {
         playerInventory = FindObjectOfType<PlayerInventory>();
@@ -46,21 +48,26 @@ public class PokeMart : MonoBehaviour
     {
         popupScreen.SetActive(true);
         playerMovement.isInBattle = true;
+
+        dialogueText.text = "Good day! You currently have " + playerInventory.healPotions + " heal potion. How many more do you need?";
     }
 
     public void On1xButton()
     {
         playerInventory.AddHealPotions(1);
+        dialogueText.text = "Good day! You currently have " + playerInventory.healPotions + " heal potion. How many more do you need?";
     }
 
     public void On5xButton()
     {
         playerInventory.AddHealPotions(5);
+        dialogueText.text = "Good day! You currently have " + playerInventory.healPotions + " heal potion. How many more do you need?";
     }
 
     public void On10xButton()
     {
         playerInventory.AddHealPotions(10);
+        dialogueText.text = "Good day! You currently have " + playerInventory.healPotions + " heal potion. How many more do you need?";
     }
 
     public void OnExitButton()
