@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator animator;
 
+    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,18 +31,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-
         if (isInBattle)
         {
             return;
         }
+
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
 
         encounterTimer += Time.deltaTime;
 
@@ -48,8 +49,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if (IsInsideEncounterArea())
             {
-                //Debug.Log("Inside the encounter area!");
-
                 if (Random.Range(0f, 1f) <= encounterChance)
                 {
                     InitiateRandomBattle();
@@ -62,14 +61,17 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if(!isInBattle)
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
+        
     }
 
     void InitiateRandomBattle()
     {
         if (isInBattle == false)
         {
-            //Debug.Log("Pokemon encountered!");
             battleSystem.BattleStart();
             isInBattle = true;
         }

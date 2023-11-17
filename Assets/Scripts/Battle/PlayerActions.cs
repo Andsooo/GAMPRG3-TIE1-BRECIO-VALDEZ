@@ -64,13 +64,11 @@ public class PlayerActions : MonoBehaviour
 
     public IEnumerator PlayerHeal(Unit playerUnit, BattleState state, BattleHUD playerHUD, Text dialogueText)
     {
-        int healAmount = Random.Range(5, 10);
-
-        playerUnit.Heal(healAmount);
+        playerUnit.UseHealPotion();
 
         playerHUD.SetHealth(playerUnit.curHP);
 
-        dialogueText.text = playerUnit.unitName + " heals for " + healAmount + " HP!";
+        dialogueText.text = playerUnit.unitName + playerUnit.healDialogue;
 
         yield return new WaitForSeconds(2f);
 
@@ -80,9 +78,8 @@ public class PlayerActions : MonoBehaviour
 
     public IEnumerator Run(BattleState state, Text dialogueText)
     {
-        float runChance = 0.2f; // 20% chance to run, adjust as needed
+        float runChance = 0.2f;
 
-        // Regardless of the escape attempt's outcome, end the player's turn
         state = BattleState.ENEMYTURN;
 
         if (Random.value < runChance)
