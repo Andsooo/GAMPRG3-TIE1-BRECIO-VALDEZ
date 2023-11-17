@@ -20630,9 +20630,6 @@ MonoBehaviour:
   battleSystem: {fileID: 1271619983}
   isInBattle: 0
   animator: {fileID: 1358690413}
-  spriteRenderer: {fileID: 1358690412}
-  spriteRight: {fileID: -1082348201, guid: 0c090c77629e56040b93d2294a816044, type: 3}
-  spriteForward: {fileID: 0}
 --- !u!50 &1358690409
 Rigidbody2D:
   serializedVersion: 4
@@ -22111,7 +22108,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.13137949}
+  m_Offset: {x: -0.23584294, y: -0.61933076}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -22122,7 +22119,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.62, y: 3.8672411}
+  m_Size: {x: 5.148314, y: 3.8347113}
   m_EdgeRadius: 0
 --- !u!61 &1871924844
 BoxCollider2D:
@@ -22156,7 +22153,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -2.444972}
+  m_Offset: {x: -0.22771072, y: -2.9654536}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -22167,7 +22164,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.75386786}
+  m_Size: {x: 0.54457855, y: 0.85145855}
   m_EdgeRadius: 0
 --- !u!1 &1890138768
 GameObject:

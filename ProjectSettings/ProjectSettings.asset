@@ -681,7 +681,8 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -701,11 +702,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 49e45110-9ecb-413c-83fd-cd3de9727160
+  cloudProjectId: 006d5f01-f174-42be-bc83-15ff91e7f3b9
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: "Pok\xE9mon (Lite)"
-  organizationId: unity_mo5lk-hnwraeog
+  organizationId: unity_g0fnr4p2umxhsg
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
