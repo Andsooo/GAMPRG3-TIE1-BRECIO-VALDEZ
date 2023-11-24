@@ -45,6 +45,9 @@ TagManager:
   - name: Background
     uniqueID: 4196711749
     locked: 0
+  - name: Building Props
+    uniqueID: 4247336597
+    locked: 0
   - name: Grass
     uniqueID: 3619417815
     locked: 0
