@@ -32,6 +32,9 @@ public class BattleSystem : MonoBehaviour
     private PlayerActions playerActions;
     private EnemyActions enemyActions;
 
+    public UIManager uiManager;
+    
+
     void Start()
     {
         playerActions = GetComponent<PlayerActions>();
@@ -42,7 +45,9 @@ public class BattleSystem : MonoBehaviour
     {
         if (!isBattling)
         {
-            battleSystem.SetActive(true);
+            uiManager.TransitionScreen();
+
+            //battleSystem.SetActive(true);
 
             state = BattleState.START;
             StartCoroutine(SetupBattle());
@@ -50,6 +55,8 @@ public class BattleSystem : MonoBehaviour
             isBattling = true;
         }
     }
+
+    
 
     IEnumerator SetupBattle()
     {

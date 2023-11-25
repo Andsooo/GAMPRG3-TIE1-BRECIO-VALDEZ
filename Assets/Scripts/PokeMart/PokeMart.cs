@@ -15,6 +15,8 @@ public class PokeMart : MonoBehaviour
 
     public Text dialogueText;
 
+    public GameObject instruction;
+
     void Start()
     {
         playerInventory = FindObjectOfType<PlayerInventory>();
@@ -25,6 +27,7 @@ public class PokeMart : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerInside = true;
+            instruction.SetActive(true);
         }
     }
 
@@ -33,6 +36,7 @@ public class PokeMart : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInside = false;
+            instruction.SetActive(false);
         }
     }
 

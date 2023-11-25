@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject battleStartTransition;
+    public GameObject battleEndTransition;
+
+    public GameObject battleSystem;
+
+    public void TransitionScreen()
     {
-        
+        StartCoroutine(StartTransition());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator StartTransition()
     {
-        
+        battleStartTransition.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        battleStartTransition.SetActive(false);
+
+        battleSystem.SetActive(true);
+
+        battleEndTransition.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        battleEndTransition.SetActive(false);
     }
 }
