@@ -14,6 +14,7 @@ public class Unit : MonoBehaviour
     public int curHP;
     public string healDialogue;
     public PlayerInventory playerInventory;
+    
 
     void Start()
     {

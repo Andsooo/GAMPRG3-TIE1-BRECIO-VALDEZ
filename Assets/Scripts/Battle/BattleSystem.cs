@@ -33,10 +33,15 @@ public class BattleSystem : MonoBehaviour
     private EnemyActions enemyActions;
 
     public UIManager uiManager;
-    
+
+    public Text healPotionText;
+
+    public PlayerInventory playerInventory;
 
     void Start()
     {
+        playerInventory = FindObjectOfType<PlayerInventory>();
+        
         playerActions = GetComponent<PlayerActions>();
         enemyActions = GetComponent<EnemyActions>();
     }
@@ -63,6 +68,8 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.START)
         {
             ResetBattle();
+
+            healPotionText.text = "Heal (" + playerInventory.healPotions + ")";
 
             GameObject playerGameObject = Instantiate(playerPrefab, playerBattleArea);
             playerUnit = playerGameObject.GetComponent<Unit>();
@@ -129,6 +136,8 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.WAITING;
 
         StartCoroutine(playerActions.PlayerHeal(playerUnit, state, playerHUD, dialogueText));
+
+        healPotionText.text = "Heal (" + playerInventory.healPotions + ")";
     }
 
     public IEnumerator EnemyTurn()
